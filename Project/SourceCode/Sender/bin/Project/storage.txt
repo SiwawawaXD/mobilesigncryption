@@ -1,0 +1,40 @@
+try {
+            // Build JSON payload
+            JSONObject payload = new JSONObject();
+            payload.put("PEmessage", PEmessage);
+
+            // URL of your Flask endpoint
+            URL url = new URL("https://ferrous-syntax-457506-i2.et.r.appspot.com/prehash");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            // Configure connection
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "application/json; utf-8");
+            conn.setRequestProperty("Accept", "application/json");
+            conn.setDoOutput(true);
+
+            // Send JSON data
+            try (OutputStream os = conn.getOutputStream()) {
+                byte[] input = payload.toString().getBytes("utf-8");
+                os.write(input, 0, input.length);
+            }
+
+            // Read the response
+            StringBuilder response = new StringBuilder();
+            try (BufferedReader br = new BufferedReader(
+                    new InputStreamReader(conn.getInputStream(), "utf-8"))) {
+                String responseLine;
+                while ((responseLine = br.readLine()) != null) {
+                    response.append(responseLine.trim());
+                }
+            }
+
+            // Parse JSON response
+            JSONObject jsonResponse = new JSONObject(response.toString());
+            MD = jsonResponse.getString("MD");
+
+            System.out.println("Received MD: " + MD);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }

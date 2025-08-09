@@ -1,0 +1,12 @@
+#app.yaml
+runtime: python311
+
+entrypoint: gunicorn -b :$PORT main:app
+
+instance_class: F2
+
+env_variables:
+  CLOUD_SQL_USERNAME: admin
+  CLOUD_SQL_PASSWORD: soranowoto
+  CLOUD_SQL_DATABASE_NAME: mobilesigncryption
+  CLOUD_SQL_CONNECTION_NAME: ferrous-syntax-457506-i2:asia-southeast1:instance1
