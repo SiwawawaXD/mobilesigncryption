@@ -11,7 +11,7 @@ To use all component of this project, follow these steps.
 ### Create databases on Google CloudSQL
 
 1. Go to https://console.cloud.google.com/sql/instances. and create a new instance.
-2. Go to `Overview` page of the instance and import the database from ?/SourceCode/cloud
+2. Go to `Overview` page of the instance and import the database from Project/SourceCode/cloud
 3. Go to `Users` page of the instance and add user account for a Flask application.
 
 ### Set up Flask application
